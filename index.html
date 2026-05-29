@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeria AgroTech</title>
+    <style>
+        /* CSS: Estilização da Página */
+        :root {
+            --primary-color: #2e7d32; /* Verde Agro */
+            --accent-color: #f57c00;  /* Laranja Trator */
+            --bg-color: #f1f8e9;
+            --text-color: #37474f;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        /* Container da foto em destaque */
+        .main-view {
+            width: 100%;
+            max-width: 800px;
+            height: 450px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            margin-bottom: 20px;
+            background-color: #ddd;
+        }
+
+        .main-view img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Grid de miniaturas */
+        .thumbnails {
+            display: flex;
+            gap: 15px;
+            max-width: 800px;
+            overflow-x: auto;
+            padding: 10px;
+        }
+
+        .thumb {
+            width: 120px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .thumb:hover {
+            transform: scale(1.05);
+        }
+
+        .thumb.active {
+            border-color: var(--accent-color);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Galeria Agro: Tecnologia no Campo</h1>
+        <p>Clique nas miniaturas para alternar a visão dos tratores e da colheita.</p>
+    </header>
+
+    <div class="main-view">
+        <img id="featured" src="https://images.unsplash.com/photo-1592997572594-34be01bc36c7?w=800" alt="Trator na fazenda">
+    </div>
+
+    <div class="thumbnails">
+        <img class="thumb active" src="https://images.unsplash.com/photo-1592997572594-34be01bc36c7?w=800" alt="Trator colhendo" onclick="changeImage(this)">
+        <img class="thumb" src="https://images.unsplash.com/photo-1593113630400-ea4288922497?w=800" alt="Maquinário agrícola" onclick="changeImage(this)">
+        <img class="thumb" src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=800" alt="Gado na fazenda" onclick="changeImage(this)">
+        <img class="thumb" src="https://images.unsplash.com/photo-1624720114708-0cbd6ee41f4e?w=800" alt="Plantação" onclick="changeImage(this)">
+    </div>
+
+    <script>
+        // JavaScript: Lógica de Interatividade
+        function changeImage(element) {
+            // 1. Pega a imagem de destaque
+            const featuredImg = document.getElementById('featured');
+            
+            // 2. Altera o 'src' e o 'alt' da foto principal para o da foto clicada
+            featuredImg.style.opacity = 0; // Efeito de piscar sutil
+            
+            setTimeout(() => {
+                featuredImg.src = element.src;
+                featuredImg.alt = element.alt;
+                featuredImg.style.opacity = 1;
+            }, 200);
+
+            // 3. Remove a classe 'active' de todas as miniaturas
+            const thumbs = document.querySelectorAll('.thumb');
+            thumbs.forEach(thumb => thumb.classList.remove('active'));
+
+            // 4. Adiciona a classe 'active' apenas na miniatura clicada
+            element.classList.add('active');
+        }
+    </script>
+
+</body>
+</html>
