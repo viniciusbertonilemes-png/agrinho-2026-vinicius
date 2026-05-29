@@ -1,0 +1,75 @@
+/* Configurações de cores globais */
+:root {
+    --primary-color: #2e7d32; /* Verde Agro */
+    --accent-color: #f57c00;  /* Laranja Trator */
+    --bg-color: #f1f8e9;
+    --text-color: #37474f;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+h1 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+/* Container da foto em destaque */
+.main-view {
+    width: 100%;
+    max-width: 800px;
+    height: 450px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    margin-bottom: 20px;
+    background-color: #ddd;
+}
+
+.main-view img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.3s ease;
+}
+
+/* Grid de miniaturas */
+.thumbnails {
+    display: flex;
+    gap: 15px;
+    max-width: 800px;
+    overflow-x: auto;
+    padding: 10px;
+}
+
+.thumb {
+    width: 120px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 3px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.thumb:hover {
+    transform: scale(1.05);
+}
+
+.thumb.active {
+    border-color: var(--accent-color);
+    transform: scale(1.05);
+}
